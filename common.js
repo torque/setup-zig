@@ -111,6 +111,11 @@ async function getLatestVersion() {
 async function getTarballName() {
   const version = await getVersion();
 
+  const host_override = core.getInput('host');
+  if (host_override !== '') {
+    return `zig-${host_override}-${version}`
+  }
+
   let arch = {
     arm:      'arm',
     arm64:    'aarch64',

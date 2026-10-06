@@ -24,6 +24,10 @@ inputs:
     description: 'Override whether to use the tool cache when caching Zig installations. Default is false for GitHub-hosted runners, true for other runners.'
     required: false
     default: ''
+  host:
+    description: 'Override autodetection of host architecture and operating system when fetching the Zig compiler. The provided value is used verbatim. Example: "x86_64-freebsd"'
+    required: false
+    default: ''
 runs:
   using: 'node20'
   main: 'main.js'

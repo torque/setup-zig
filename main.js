@@ -178,9 +178,15 @@ async function main() {
       }
     }
 
-    core.addPath(zig_dir);
-    const zig_version = (await exec.getExecOutput('zig', ['version'])).stdout.trim();
-    core.info(`Resolved Zig version ${zig_version}`);
+    try {
+      const zig_version = (await exec.getExecOutput('zig', ['version'])).stdout.trim();
+      core.addPath(zig_dir);
+      core.info(`Resolved Zig version ${zig_version}`);
+    } catch (exc) {
+      if (core.getInput('host') === '') {
+        throw exc;
+      }
+    }
 
     const cache_path = common.getZigCachePath();
     core.exportVariable('ZIG_GLOBAL_CACHE_DIR', cache_path);
