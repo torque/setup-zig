@@ -189,6 +189,7 @@ async function main() {
     }
 
     const cache_path = common.getZigCachePath();
+    core.exportVariable('ZIG_TOOLCHAIN_INSTALL_DIR', zig_dir);
     core.exportVariable('ZIG_GLOBAL_CACHE_DIR', cache_path);
     core.exportVariable('ZIG_LOCAL_CACHE_DIR', cache_path);
 
